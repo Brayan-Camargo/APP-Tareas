@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --blanco: #fafafb;
+    --morado:#9a67ea;
+    --azul_claro:#04d4c3;
+    --azul_obscuro:#2a73c2;
+    --green: #2c7b90;
+
+    --fuente_general: "Inter", sans-serif;
+}
+
+body{
+    background: linear-gradient(to bottom, var(--morado), var(--azul_claro));
+    height: 100vh;
+}
