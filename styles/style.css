@@ -10,7 +10,103 @@
     --fuente_general: "Inter", sans-serif;
 }
 
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body{
     background: linear-gradient(to bottom, var(--morado), var(--azul_claro));
     height: 100vh;
+    font-family: var(--fuente_general);
+    color: var(--blanco);
+}
+
+.container{
+    max-width: 85%;
+    width: 400px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+/*-- PERFIL --*/
+
+.perfil span{
+    letter-spacing: 1px;
+}
+
+#fecha{
+    padding: 50px 0 5px 0;
+}
+
+/*-- AGREGAR TAREA --*/
+
+.agregar_tarea{
+    background-color: var(--blanco);
+    border-radius: 18px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 70px;
+    margin: 40px 0;
+}
+
+.agregar_tarea input{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--blanco);
+}
+
+.agregar_tarea i{
+    font-size: 50px;
+    color: var(--morado);
+
+}
+
+.agregar_tarea i:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.agregar_tarea input::placeholder{
+    font-size: 1.1rem;
+    color: var(--morado);
+}
+
+/*-- SECCION TAREA --*/
+
+.seccion_tarea h3{
+    margin-bottom: 20px;
+}
+
+.seccion_tarea li{
+    display: flex;
+    background: linear-gradient(to bottom, var(--azul_obscuro), var(--azul_claro));
+    border-radius: 12px;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;    
+    margin: 5px 0;
+}
+
+.seccion_tarea i{
+    font-size: 25px;
+}
+
+.seccion_tarea i:hover{
+    color: var(--azul_claro);
+    cursor: pointer;
+}
+
+.seccion_tarea > ul p{
+    font-size: 1.2rem;
+}
+
+.line_trougth{
+    text-decoration: line-through;
+    color: var(--azul_claro);
 }
