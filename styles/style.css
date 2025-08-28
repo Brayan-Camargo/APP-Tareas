@@ -106,7 +106,7 @@ body{
     font-size: 1.2rem;
 }
 
-.line_trougth{
+.line_through{
     text-decoration: line-through;
     color: var(--azul_claro);
 }
