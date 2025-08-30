@@ -11,9 +11,29 @@ let nombre = "";
 
 // FUNCION AGREAGAR NOMBRE
 
-function agregarNombre(nombre){
-    nombre 
+// Función para gestionar el nombre del usuario
+function gestionarNombreUsuario() {
+  const nombreH1 = document.getElementById('nombreUsuario');
+  let nombre = localStorage.getItem('nombreUsuario');
+
+  if (!nombre) {
+    // Si no hay un nombre guardado, lo pedimos
+    nombre = prompt('¡Hola! Por favor, ingresa tu nombre para personalizar tu lista de tareas.');
+    if (nombre) {
+      // Guardamos el nombre en el almacenamiento local
+      localStorage.setItem('nombreUsuario', nombre);
+    } else {
+      // Si el usuario no ingresa nada, usamos un nombre por defecto
+      nombre = 'Usuario';
+    }
+  }
+
+  // Mostramos el nombre en el H1
+  nombreH1.textContent = `¡Hola, ${nombre}!`;
 }
+
+// Llamamos a la función cuando la página se carga
+document.addEventListener('DOMContentLoaded', gestionarNombreUsuario);
 
 
 
