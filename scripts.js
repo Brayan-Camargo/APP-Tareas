@@ -5,7 +5,17 @@ const botonEnter = document.querySelector("#enter");
 const check = "fa-check-circle";
 const uncheck = "fa-circle";
 const lineThrough = "line_through";
-let id = 0;
+let id;
+let LIST;
+
+
+// FUNCION DE STORAGE PARA GUARDAR LAS TAREAS EN INTERNET con JSON y tranformar la informacion a texto
+
+// FUNCION DE FECHA
+
+const FECHA = new Date();
+fecha.innerHTML = FECHA.toLocaleDateString("es-MX", {weekday: "long", month: "short", day:"numeric"});
+
 
 // FUNCION AGREGAR TAREA
 
@@ -33,6 +43,7 @@ function tareaRealizada(element){
     element.classList.toggle(check);
     element.classList.toggle(uncheck);
     element.parentNode.querySelector(".text").classList.toggle(lineThrough);
+    LIST[element.id].realizado = LIST[element.id].realizado ? false : true;
 }
 
 
@@ -40,6 +51,7 @@ function tareaRealizada(element){
 
 function tareaEliminada(element){
     element.parentNode.parentNode.removeChild(element.parentNode);
+    LIST[element.id].eliminado = true;
 }
 
 
@@ -48,7 +60,14 @@ botonEnter.addEventListener("click", ()=> {
     const tarea = input.value;
     if(tarea){
         agregarTarea(tarea, id, false, false);
+        LIST.push({
+            nombre: tarea,
+            id: id,
+            realizado: false,
+            eliminado: false,
+        })
     }
+    localStorage.item("TODO",JSON.stringify(LIST));
     input.value="";
     id++;
 })
@@ -56,10 +75,17 @@ botonEnter.addEventListener("click", ()=> {
 
 document.addEventListener("keyup", function(event){ //keyup, se suelta el teclado y para que funcione la lista al dar enter
     if(event.key == "Enter"){
-        const tarea = input.value;
+    const tarea = input.value;
         if(tarea){
             agregarTarea(tarea, id, false, false);
+            LIST.push({
+            nombre: tarea,
+            id: id,
+            realizado: false,
+            eliminado: false,
+            })            
         }
+        localStorage.item("TODO",JSON.stringify(LIST));
         input.value="";
         id++;
     }
@@ -74,4 +100,24 @@ lista.addEventListener("click", function(event){
     else if(elementData==="eliminado"){
         tareaEliminada(element);
     }
+    localStorage.item("TODO",JSON.stringify(LIST));
 })
+
+//Local STORAGE get item
+
+let data = localStorage.getItem("TODO");
+
+if(DATA){
+    LIST = JSON.parse(data);
+    id = LIST.length;
+    cargarsLista(LIST)
+} else {
+    LIST = [];
+    id = 0;
+}
+
+function cargarsLista(DATA){
+    DATA.forEach(function(i){
+        agregarTarea(i.nombre, i.id, i.realizado, i.eliminado);
+    })
+}
