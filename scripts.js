@@ -7,9 +7,15 @@ const uncheck = "fa-circle";
 const lineThrough = "line_through";
 let id;
 let LIST;
+let nombre = "";
+
+// FUNCION AGREAGAR NOMBRE
+
+function agregarNombre(nombre){
+    nombre 
+}
 
 
-// FUNCION DE STORAGE PARA GUARDAR LAS TAREAS EN INTERNET con JSON y tranformar la informacion a texto
 
 // FUNCION DE FECHA
 
@@ -67,7 +73,7 @@ botonEnter.addEventListener("click", ()=> {
             eliminado: false,
         })
     }
-    localStorage.item("TODO",JSON.stringify(LIST));
+    localStorage.setItem("TODO",JSON.stringify(LIST));
     input.value="";
     id++;
 })
@@ -85,7 +91,7 @@ document.addEventListener("keyup", function(event){ //keyup, se suelta el teclad
             eliminado: false,
             })            
         }
-        localStorage.item("TODO",JSON.stringify(LIST));
+        localStorage.setItem("TODO",JSON.stringify(LIST));
         input.value="";
         id++;
     }
@@ -100,23 +106,24 @@ lista.addEventListener("click", function(event){
     else if(elementData==="eliminado"){
         tareaEliminada(element);
     }
-    localStorage.item("TODO",JSON.stringify(LIST));
+    localStorage.setItem("TODO",JSON.stringify(LIST));
 })
 
 //Local STORAGE get item
+// FUNCION DE STORAGE PARA GUARDAR LAS TAREAS EN INTERNET con JSON y tranformar la informacion a texto
 
 let data = localStorage.getItem("TODO");
 
-if(DATA){
+if(data){
     LIST = JSON.parse(data);
     id = LIST.length;
-    cargarsLista(LIST)
+    cargarLista(LIST);
 } else {
     LIST = [];
     id = 0;
 }
 
-function cargarsLista(DATA){
+function cargarLista(DATA){
     DATA.forEach(function(i){
         agregarTarea(i.nombre, i.id, i.realizado, i.eliminado);
     })
